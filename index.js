@@ -13,6 +13,7 @@ const myServer = http.createServer((req, res) => {
 
     if (statusCode >= 100 && statusCode < 600) {
       res.writeHead(statusCode, { "Content-Type": "text/plain" });
+      res.write(`status code Message :${http.STATUS_CODES[statusCode]} \n`);
       res.end(`Response with status code: ${statusCode}`);
     } else {
       res.writeHead(400, { "Content-Type": "text/plain" });
