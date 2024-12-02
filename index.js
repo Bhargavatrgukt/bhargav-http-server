@@ -7,6 +7,11 @@ const myServer = http.createServer((req, res) => {
   //   let urlForStausCode = [req.url];
   //   console.log(urlForStausCode);
   //   console.log(urlForStausCode[0].startsWith("/status/"));
+  if (req.url == "/") {
+    res.write("try paths with html,json,status,delay");
+    res.end(`\n This is a home page`);
+    return;
+  }
   if (req.url.startsWith("/status/")) {
     console.log("Status response detected");
     const statusCode = parseInt(req.url.split("/")[2], 10);
@@ -66,7 +71,6 @@ const myServer = http.createServer((req, res) => {
       res.write(JSON.stringify({ uuid })); // Send the UUID in JSON format as response
       res.end();
       break;
-
     default:
       res.write("Not Found");
       res.end();
